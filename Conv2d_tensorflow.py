@@ -137,4 +137,4 @@ def conv2d_same_padding(input, weight, bias=None, stride=1, padding='VALID', dil
                         dilation=dilation, groups=groups)
     
     else:
-        raise ValueError('Padding should be either SAME, VALID or specific integer, but not {}.'.format(padding))
+        raise ValueError('Padding should be SAME, VALID or specific integer, but not {}.'.format(padding))
