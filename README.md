@@ -1,4 +1,4 @@
-# tensorflow_type_conv2d_in_pytorch  
+# Tensorflow-type-conv2d-in-pytorch  
 I added some tensorflow element in pytorch Conv2d, like padding='SAME'.  
   
 You can also use it as normal conv2d in pytorch.  
