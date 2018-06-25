@@ -93,17 +93,16 @@ class Conv2d(_ConvNd):
 # custom con2d, because pytorch don't have "padding='same'" option.
 def conv2d_same_padding(input, weight, bias=None, stride=1, padding='VALID', dilation=1, groups=1):
     def check_format(*argv):
-        argv_format = []
-        for i in range(len(argv)):
-            if type(argv[i]) is int:
-                argv_format.append((argv[i], argv[i]))
-            elif type(argv[i]) is list:
-                argv_format.append(tuple(argv[i]))
-            elif type(argv[i]) is not tuple:
-                raise TypeError('stride and dilation should all be int, list or tuple')
-            else:
-                argv_format.append(argv[i])
-        return argv_format
+    argv_format = []
+    for i in range(len(argv)):
+        if type(argv[i]) is int:
+            argv_format.append((argv[i], argv[i]))
+        elif hasattr(argv[i], "__getitem__"):
+            argv_format.append(tuple(argv[i]))
+        else:
+            raise TypeError('all input should be int or list-type, now is {}'.format(argv[i]))
+
+    return argv_format
     
     stride, dilation = check_format(stride, dilation)
 
